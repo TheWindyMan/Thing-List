@@ -10,6 +10,12 @@ class Thing extends Component {
         }
     }
 
+    checked = (ev) => {
+        const { thing, saveThing } = this.props
+        thing.completed = ev.target.checked
+        saveThing(thing)
+    }
+
 
     updateName = (ev) => {
         const { thing, saveThing } = this.props
@@ -29,7 +35,11 @@ class Thing extends Component {
 
         return (
             <li className="Thing">
-                <input type="checkbox" value="on" />
+                <input 
+                    type="checkbox"
+                    defaultChecked={thing.completed}
+                    onChange={this.checked}
+                />
                 <div className="details">
                     <ContentEditable
                         className="name"
